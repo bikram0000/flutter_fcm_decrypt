@@ -1,0 +1,29 @@
+# Run with `flutter pub run ffigen --config ffigen.yaml`.
+name: FlutterFcmDecryptBindings
+description: |
+  Bindings for `src/flutter_fcm_decrypt.h`.
+
+  Regenerate bindings with `flutter pub run ffigen --config ffigen.yaml`.
+output: 'lib/flutter_fcm_decrypt_bindings_generated.dart'
+headers:
+  entry-points:
+    - 'src/flutter_fcm_decrypt.h'
+  include-directives:
+    - 'src/flutter_fcm_decrypt.h'
+preamble: |
+  // ignore_for_file: always_specify_types
+  // ignore_for_file: camel_case_types
+  // ignore_for_file: non_constant_identifier_names
+comments:
+  style: any
+  length: full
+llvm-path:
+  # use on MacOS AppleSilicon to use x86 version of llvm
+  - "/usr/local/homebrew/opt/llvm"
+  - "/opt/homebrew/Cellar/llvm/17.0.6_1/lib/libclang.dylib"
+type-map:
+  native-types:
+    'char':
+      'lib': 'pkg_ffi'
+      'c-type': 'Utf8'
+      'dart-type': 'Utf8'
