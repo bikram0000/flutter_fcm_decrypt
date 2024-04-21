@@ -18,6 +18,6 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../src" "${CMAKE_CURRENT_BINARY_DI
 set(flutter_fcm_decrypt_bundled_libraries
   # Defined in ../src/CMakeLists.txt.
   # This can be changed to accommodate different builds.
-  $<TARGET_FILE:flutter_fcm_decrypt>
+        "${CMAKE_CURRENT_SOURCE_DIR}/libfcm_decrypt.dll"
   PARENT_SCOPE
 )

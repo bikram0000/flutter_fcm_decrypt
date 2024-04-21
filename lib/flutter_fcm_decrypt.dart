@@ -59,6 +59,7 @@ final DynamicLibrary _dylib = () {
     return DynamicLibrary.open('$_libName.so');
   }
   if (Platform.isWindows) {
+    //TODO:: include '.\\windows\\' before lib name like  './lib/$_libName.dylib' for dart only run ..
     return DynamicLibrary.open('$_libName.dll');
   }
   throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
