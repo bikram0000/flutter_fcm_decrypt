@@ -43,9 +43,20 @@ Future<String> decryptMessage(String a) async {
 }
 
 const String _libName = 'libfcm_decrypt';
-
+bool isRunningOnFlutter() {
+  // Use reflection to check if the Flutter framework library is loaded
+  try {
+    return Platform.environment.toString().contains('FLUTTER_ENGINE');
+  } catch (_) {
+    return false;
+  }
+}
 /// The dynamic library in which the symbols for [FlutterFcmDecryptBindings] can be found.
 final DynamicLibrary _dylib = () {
+  String prefixPath = '';
+  if(!isRunningOnFlutter()){
+    prefixPath='';
+  }
   if (Platform.isMacOS || Platform.isIOS) {
     if(Platform.version.contains('arm64')) {
       //TODO:: include './lib/' before lib name like  './lib/$_libName.dylib' for dart only run ..
