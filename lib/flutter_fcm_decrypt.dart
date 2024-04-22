@@ -48,8 +48,11 @@ const String _libName = 'libfcm_decrypt';
 
 bool isRunningOnFlutter() {
   // Use reflection to check if the Flutter framework library is loaded
+  if(Platform.isAndroid ||Platform.isIOS){
+    return true;
+  }
   try {
-    return Platform.environment.toString().contains('FLUTTER_ENGINE');
+    return  Platform.environment.toString().contains('FLUTTER_ENGINE');
   } catch (_) {
     return false;
   }
@@ -71,6 +74,7 @@ Future<String> getPackagePath() async {
 final DynamicLibrary _dylib = () {
   String prefixPath = '';
   if (!isRunningOnFlutter()) {
+    print("can come eherr ${Platform.environment.toString()}" );
     prefixPath = '$_currentPackagePath/macos/';
   }
   if (Platform.isMacOS || Platform.isIOS) {
