@@ -74,7 +74,6 @@ Future<String> getPackagePath() async {
 final DynamicLibrary _dylib = () {
   String prefixPath = '';
   if (!isRunningOnFlutter()) {
-    print("can come eherr ${Platform.environment.toString()}" );
     prefixPath = '$_currentPackagePath/macos/';
   }
   if (Platform.isMacOS || Platform.isIOS) {
